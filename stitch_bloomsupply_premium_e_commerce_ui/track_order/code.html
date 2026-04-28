@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Tracking - BloomSupply</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Noto+Serif:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "error": "#ba1a1a",
+                            "surface": "#fcf9f8",
+                            "tertiary": "#41423f",
+                            "tertiary-fixed": "#e4e2de",
+                            "outline": "#737872",
+                            "on-primary-fixed": "#0e1f13",
+                            "on-tertiary-fixed": "#1b1c1a",
+                            "outline-variant": "#c3c8c1",
+                            "tertiary-container": "#595956",
+                            "surface-container-lowest": "#ffffff",
+                            "on-surface": "#1c1b1b",
+                            "tertiary-fixed-dim": "#c8c6c3",
+                            "inverse-surface": "#313030",
+                            "primary-container": "#4a5d4e",
+                            "on-secondary-fixed": "#32120e",
+                            "on-tertiary-fixed-variant": "#474744",
+                            "primary-fixed-dim": "#b7ccb9",
+                            "surface-dim": "#dcd9d9",
+                            "on-background": "#1c1b1b",
+                            "primary-fixed": "#d3e8d5",
+                            "surface-variant": "#e5e2e1",
+                            "surface-container": "#f0eded",
+                            "on-secondary-fixed-variant": "#653c36",
+                            "surface-tint": "#506354",
+                            "secondary-container": "#ffc3bb",
+                            "on-secondary": "#ffffff",
+                            "primary": "#334537",
+                            "on-primary-fixed-variant": "#394b3d",
+                            "on-primary": "#ffffff",
+                            "surface-bright": "#fcf9f8",
+                            "inverse-primary": "#b7ccb9",
+                            "secondary": "#80534c",
+                            "inverse-on-surface": "#f3f0ef",
+                            "secondary-fixed": "#ffdad5",
+                            "on-tertiary": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "secondary-fixed-dim": "#f3b8b0",
+                            "on-surface-variant": "#434843",
+                            "on-error": "#ffffff",
+                            "on-primary-container": "#c0d5c2",
+                            "surface-container-low": "#f6f3f2",
+                            "surface-container-highest": "#e5e2e1",
+                            "on-tertiary-container": "#d1d0cc",
+                            "background": "#fcf9f8",
+                            "on-secondary-container": "#7b4e48",
+                            "surface-container-high": "#eae7e7",
+                            "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "gutter": "24px",
+                            "xxl": "80px",
+                            "xl": "40px",
+                            "sm": "8px",
+                            "md": "16px",
+                            "lg": "24px",
+                            "unit": "4px",
+                            "container-max": "1280px",
+                            "xs": "4px"
+                    },
+                    "fontFamily": {
+                            "h2": [
+                                    "Noto Serif"
+                            ],
+                            "button": [
+                                    "Inter"
+                            ],
+                            "h1": [
+                                    "Noto Serif"
+                            ],
+                            "body-md": [
+                                    "Inter"
+                            ],
+                            "body-lg": [
+                                    "Inter"
+                            ],
+                            "label-caps": [
+                                    "Inter"
+                            ],
+                            "h3": [
+                                    "Noto Serif"
+                            ]
+                    },
+                    "fontSize": {
+                            "h2": [
+                                    "36px",
+                                    {
+                                            "lineHeight": "1.3",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "button": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "1",
+                                            "letterSpacing": "0.02em",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "h1": [
+                                    "48px",
+                                    {
+                                            "lineHeight": "1.2",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "body-md": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "1.6",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "body-lg": [
+                                    "18px",
+                                    {
+                                            "lineHeight": "1.6",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "label-caps": [
+                                    "12px",
+                                    {
+                                            "lineHeight": "1.2",
+                                            "letterSpacing": "0.1em",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "h3": [
+                                    "24px",
+                                    {
+                                            "lineHeight": "1.4",
+                                            "fontWeight": "400"
+                                    }
+                            ]
+                    }
+            },
+                },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed pb-24 md:pb-0">
+<!-- TopNavBar (Hidden on Mobile, Visible on md+) -->
+<header class="hidden md:flex bg-stone-50/90 dark:bg-stone-950/90 backdrop-blur-md border-b border-stone-200 dark:border-stone-800 w-full px-8 h-20 max-w-7xl mx-auto justify-between items-center top-0 z-50 sticky">
+<!-- Navigation Links (Left) -->
+<nav class="flex items-center gap-8">
+<a class="text-stone-500 dark:text-stone-400 font-serif text-sm tracking-wide hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors" href="#">Shop All</a>
+<a class="text-stone-500 dark:text-stone-400 font-serif text-sm tracking-wide hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors" href="#">Occasions</a>
+<a class="text-stone-500 dark:text-stone-400 font-serif text-sm tracking-wide hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors" href="#">Subscriptions</a>
+<a class="text-stone-500 dark:text-stone-400 font-serif text-sm tracking-wide hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors" href="#">Atelier</a>
+</nav>
+<!-- Brand Logo (Center) -->
+<a class="text-2xl font-serif italic text-emerald-900 dark:text-emerald-50 absolute left-1/2 -translate-x-1/2" href="#">
+            BloomSupply
+        </a>
+<!-- Trailing Icons (Right) -->
+<div class="flex items-center gap-6 text-emerald-900 dark:text-emerald-100">
+<button aria-label="shopping_bag" class="hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+</button>
+<button aria-label="person" class="hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-gutter py-xl md:py-xxl flex flex-col items-center gap-xl">
+<!-- Header Section -->
+<div class="w-full max-w-3xl text-center space-y-sm">
+<h1 class="font-h2 text-h2 text-on-surface">Order Tracking</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Order #BS-8924-FLW</p>
+</div>
+<!-- Tracking Visualizer & Details Grid -->
+<div class="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Timeline -->
+<div class="lg:col-span-5 bg-surface-container-lowest rounded-xl border border-outline-variant/30 p-lg shadow-[0_4px_24px_rgba(74,93,78,0.04)] relative overflow-hidden">
+<h2 class="font-h3 text-h3 text-on-surface mb-xl border-b border-surface-variant pb-md">Delivery Status</h2>
+<div class="relative pl-sm">
+<!-- Vertical Line Connecting Nodes -->
+<div class="absolute left-[19px] top-6 bottom-6 w-px bg-surface-variant"></div>
+<!-- Active Vertical Line (progress) -->
+<div class="absolute left-[19px] top-6 h-[50%] w-px bg-primary"></div>
+<!-- Node 1: Delivered (Pending) -->
+<div class="flex gap-md mb-xl relative opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center z-10 shrink-0 border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-outline">home</span>
+</div>
+<div class="pt-2">
+<h3 class="font-body-lg text-body-lg text-on-surface mb-xs">Delivered</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Estimated Delivery: Thursday, Oct 26</p>
+</div>
+</div>
+<!-- Node 2: Shipped (Active) -->
+<div class="flex gap-md mb-xl relative">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center z-10 shrink-0 border-2 border-surface-container-lowest shadow-[0_0_0_4px_rgba(74,93,78,0.1)]">
+<span class="material-symbols-outlined text-on-primary">local_shipping</span>
+</div>
+<div class="pt-2">
+<h3 class="font-body-lg text-body-lg text-on-surface mb-xs">Shipped</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Package has left our atelier and is in transit.</p>
+<p class="font-label-caps text-label-caps text-secondary mt-sm uppercase">Tracking: FEDEX 1Z99999999</p>
+</div>
+</div>
+<!-- Node 3: Processing (Completed) -->
+<div class="flex gap-md mb-xl relative">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center z-10 shrink-0 border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-on-primary-fixed">package_2</span>
+</div>
+<div class="pt-2">
+<h3 class="font-body-lg text-body-lg text-on-surface mb-xs">Processing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Your arrangement is being carefully crafted.</p>
+<p class="font-label-caps text-label-caps text-outline mt-sm uppercase">Oct 24, 2:15 PM</p>
+</div>
+</div>
+<!-- Node 4: Order Placed (Completed) -->
+<div class="flex gap-md relative">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center z-10 shrink-0 border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-on-primary-fixed">receipt_long</span>
+</div>
+<div class="pt-2">
+<h3 class="font-body-lg text-body-lg text-on-surface mb-xs">Order Placed</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">We have received your order.</p>
+<p class="font-label-caps text-label-caps text-outline mt-sm uppercase">Oct 24, 9:00 AM</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Order Summary & Info -->
+<div class="lg:col-span-7 flex flex-col gap-gutter">
+<!-- Order Items Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 p-lg shadow-[0_4px_24px_rgba(74,93,78,0.04)]">
+<h2 class="font-h3 text-h3 text-on-surface mb-lg border-b border-surface-variant pb-sm">Items in Order</h2>
+<div class="flex flex-col gap-lg">
+<!-- Item 1 -->
+<div class="flex gap-md items-center">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img alt="White peony arrangement in modern ceramic vase" class="w-full h-full object-cover" data-alt="close up of delicate white peonies in a soft cream ceramic vase, natural golden hour lighting, soft shadows, minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_dbGgyL4eXGcgjN3xdUgzN0E16GGKoiAz52yrdCbtdtBiJKVeNRdhQYQZjdWHD6fW6xXaUhUQR-x0Rl-ZNWgXcrj6xCN8fqZZCBfCF-PmvBMcTTLAX03_5BOtb2uw7TivPFsG1O1c0mxGvb6C9joXcG4Y5TjE3jozwthVfYl0gjmIps9gqWxdziTEeGTtenJJqsLLcVpqiyCaRMlDhiwYuYdNM5827inAxVg1bHhoDr4mjM7zeSWkXnuCf6f1RuWRWC_jW_WFVg"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-h3 text-body-lg text-on-surface">The Alabaster Peony</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Vase Included</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Qty: 1</p>
+</div>
+<div class="text-right">
+<p class="font-body-lg text-body-lg text-on-surface">$145.00</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-md items-center">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0 bg-surface-container">
+<img alt="Scented candle with floral notes" class="w-full h-full object-cover" data-alt="artisan scented candle in amber glass jar on marble surface, soft window light, elegant and minimal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPPXv-NcR3z_HG-Wak3TNE37e08p7QB6lW0YAY3xl2wTbOLIp0buDk-4wuhIUCg4CN7BZNzpVKKfnKT5qRcUCF1jFFn451uMg9FlWqw__xaVM1BUgFf_QwhoJx-gqenBIhgbvFrUqP2p35uWjXvJBMRwe4f6f2HS2hSjE-xsd-RaYiH_nsRZBNdj_N2zGwshnGG6bmpdTzLq5ju9GNG6ZUT17ciaGA2RstbmfVvepmCHNoMYO-mTxwmEnROX-cbAR7IMsI6LfX-g"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-h3 text-body-lg text-on-surface">Atelier Signature Candle</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Rose &amp; Sandalwood</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Qty: 2</p>
+</div>
+<div class="text-right">
+<p class="font-body-lg text-body-lg text-on-surface">$76.00</p>
+</div>
+</div>
+</div>
+<div class="mt-lg pt-lg border-t border-surface-variant flex justify-between items-center">
+<span class="font-body-lg text-body-lg text-on-surface-variant">Total</span>
+<span class="font-h3 text-h3 text-on-surface">$221.00</span>
+</div>
+</div>
+<!-- Shipping Details Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 p-lg shadow-[0_4px_24px_rgba(74,93,78,0.04)] grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div>
+<h2 class="font-label-caps text-label-caps text-outline uppercase mb-sm tracking-widest">Shipping Address</h2>
+<address class="font-body-md text-body-md text-on-surface not-italic">
+                            Eleanor Vance<br/>
+                            1428 Elm Street, Apt 4B<br/>
+                            San Francisco, CA 94109<br/>
+                            United States
+                        </address>
+</div>
+<div>
+<h2 class="font-label-caps text-label-caps text-outline uppercase mb-sm tracking-widest">Contact Information</h2>
+<p class="font-body-md text-body-md text-on-surface">
+                            eleanor.vance@example.com<br/>
+                            (555) 123-4567
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Visible on Mobile, Hidden on md+) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe md:hidden bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800 shadow-[0_-4px_12px_rgba(74,93,78,0.05)] z-50">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 active:bg-stone-100 dark:active:bg-stone-900 rounded-lg p-2" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-serif text-[10px] uppercase tracking-tighter">Home</span>
+</a>
+<!-- Shop -->
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 active:bg-stone-100 dark:active:bg-stone-900 rounded-lg p-2" href="#">
+<span class="material-symbols-outlined mb-1">local_florist</span>
+<span class="font-serif text-[10px] uppercase tracking-tighter">Shop</span>
+</a>
+<!-- Cart -->
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 active:bg-stone-100 dark:active:bg-stone-900 rounded-lg p-2" href="#">
+<span class="material-symbols-outlined mb-1">shopping_bag</span>
+<span class="font-serif text-[10px] uppercase tracking-tighter">Cart</span>
+</a>
+<!-- Account (Active) -->
+<a class="flex flex-col items-center justify-center text-emerald-900 dark:text-emerald-50 font-bold active:bg-stone-100 dark:active:bg-stone-900 rounded-lg p-2 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-serif text-[10px] uppercase tracking-tighter">Account</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="bg-stone-100 dark:bg-stone-900 border-t border-stone-200 dark:border-stone-800 w-full py-16 px-8 flex flex-col items-center gap-8 max-w-7xl mx-auto mt-auto">
+<div class="text-xl font-serif text-emerald-900 dark:text-emerald-50 mb-4">
+            BloomSupply
+        </div>
+<nav class="flex flex-wrap justify-center gap-6 mb-8">
+<a class="font-serif text-xs tracking-widest uppercase text-stone-500 hover:text-emerald-700 underline transition-all" href="#">Sustainability</a>
+<a class="font-serif text-xs tracking-widest uppercase text-stone-500 hover:text-emerald-700 underline transition-all" href="#">Shipping &amp; Returns</a>
+<a class="font-serif text-xs tracking-widest uppercase text-stone-500 hover:text-emerald-700 underline transition-all" href="#">Privacy</a>
+<a class="font-serif text-xs tracking-widest uppercase text-stone-500 hover:text-emerald-700 underline transition-all" href="#">Contact</a>
+</nav>
+<p class="font-serif text-xs tracking-widest uppercase text-stone-500 text-center">
+            © 2024 BloomSupply Atelier. Curated Nature for the Modern Home.
+        </p>
+</footer>
+</body></html>

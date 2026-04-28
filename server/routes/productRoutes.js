@@ -1,16 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const { getProducts, getProductById, createProduct, updateProduct, deleteProduct, getMyProducts } = require('../controllers/productController');
-const { protect, authorize } = require('../middleware/auth');
+const { getProducts, getProductById, getRelatedProducts, getBestsellers, getRecentProducts, createProduct, updateProduct, deleteProduct, getAllProducts } = require('../controllers/productController');
+const { protect, isAdmin } = require('../middleware/auth');
 
-// Public routes
 router.get('/', getProducts);
-router.get('/my', protect, authorize('vendor', 'grower'), getMyProducts);
+router.get('/bestsellers', getBestsellers);
+router.get('/recent', getRecentProducts);
+router.get('/all', protect, isAdmin, getAllProducts);
 router.get('/:id', getProductById);
+router.get('/:id/related', getRelatedProducts);
 
-// Protected routes (vendor/grower only)
-router.post('/', protect, authorize('vendor', 'grower'), createProduct);
-router.put('/:id', protect, authorize('vendor', 'grower'), updateProduct);
-router.delete('/:id', protect, authorize('vendor', 'grower'), deleteProduct);
+router.post('/', protect, isAdmin, createProduct);
+router.put('/:id', protect, isAdmin, updateProduct);
+router.delete('/:id', protect, isAdmin, deleteProduct);
 
 module.exports = router;

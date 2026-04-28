@@ -10,15 +10,21 @@ export const CartProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   const [cartLoading, setCartLoading] = useState(false);
 
-  // Fetch cart from API when user is logged in
+  const updateCount = (items) => {
+    setCartCount(items ? items.reduce((sum, i) => sum + i.quantity, 0) : 0);
+  };
+
   const fetchCart = useCallback(async () => {
     if (!user) {
-      // Use local storage for guest cart
       const local = localStorage.getItem('bloom_guest_cart');
       if (local) {
-        const parsed = JSON.parse(local);
-        setCart(parsed);
-        setCartCount(parsed.items ? parsed.items.reduce((sum, i) => sum + i.quantity, 0) : 0);
+        try {
+          const parsed = JSON.parse(local);
+          setCart(parsed);
+          updateCount(parsed.items);
+        } catch (e) {
+          localStorage.removeItem('bloom_guest_cart');
+        }
       }
       return;
     }
@@ -27,9 +33,9 @@ export const CartProvider = ({ children }) => {
       setCartLoading(true);
       const { data } = await api.getCart();
       setCart(data);
-      setCartCount(data.items ? data.items.reduce((sum, i) => sum + i.quantity, 0) : 0);
+      updateCount(data.items);
     } catch (err) {
-      console.error('Failed to fetch cart:', err);
+      console.error(err);
     } finally {
       setCartLoading(false);
     }
@@ -41,7 +47,6 @@ export const CartProvider = ({ children }) => {
 
   const addItem = async (productId, quantity = 1) => {
     if (!user) {
-      // Guest cart in localStorage
       const local = JSON.parse(localStorage.getItem('bloom_guest_cart') || '{"items":[]}');
       const existing = local.items.find(i => i.product === productId || i.product?._id === productId);
       if (existing) {
@@ -51,17 +56,16 @@ export const CartProvider = ({ children }) => {
       }
       localStorage.setItem('bloom_guest_cart', JSON.stringify(local));
       setCart(local);
-      setCartCount(local.items.reduce((sum, i) => sum + i.quantity, 0));
+      updateCount(local.items);
       return local;
     }
 
     try {
       const { data } = await api.addToCart(productId, quantity);
       setCart(data);
-      setCartCount(data.items.reduce((sum, i) => sum + i.quantity, 0));
+      updateCount(data.items);
       return data;
     } catch (err) {
-      console.error('Failed to add to cart:', err);
       throw err;
     }
   };
@@ -71,10 +75,10 @@ export const CartProvider = ({ children }) => {
     try {
       const { data } = await api.updateCartItem(productId, quantity);
       setCart(data);
-      setCartCount(data.items.reduce((sum, i) => sum + i.quantity, 0));
+      updateCount(data.items);
       return data;
     } catch (err) {
-      console.error('Failed to update cart item:', err);
+      console.error(err);
     }
   };
 
@@ -84,15 +88,15 @@ export const CartProvider = ({ children }) => {
       local.items = local.items.filter(i => (i.product?._id || i.product) !== productId);
       localStorage.setItem('bloom_guest_cart', JSON.stringify(local));
       setCart(local);
-      setCartCount(local.items.reduce((sum, i) => sum + i.quantity, 0));
+      updateCount(local.items);
       return;
     }
     try {
       const { data } = await api.removeFromCart(productId);
       setCart(data);
-      setCartCount(data.items.reduce((sum, i) => sum + i.quantity, 0));
+      updateCount(data.items);
     } catch (err) {
-      console.error('Failed to remove from cart:', err);
+      console.error(err);
     }
   };
 
@@ -108,7 +112,7 @@ export const CartProvider = ({ children }) => {
       setCart({ items: [] });
       setCartCount(0);
     } catch (err) {
-      console.error('Failed to clear cart:', err);
+      console.error(err);
     }
   };
 

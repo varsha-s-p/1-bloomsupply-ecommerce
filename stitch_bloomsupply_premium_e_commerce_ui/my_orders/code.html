@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Orders - BloomSupply</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "surface": "#fcf9f8",
+                        "tertiary": "#41423f",
+                        "tertiary-fixed": "#e4e2de",
+                        "outline": "#737872",
+                        "on-primary-fixed": "#0e1f13",
+                        "on-tertiary-fixed": "#1b1c1a",
+                        "outline-variant": "#c3c8c1",
+                        "tertiary-container": "#595956",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "tertiary-fixed-dim": "#c8c6c3",
+                        "inverse-surface": "#313030",
+                        "primary-container": "#4a5d4e",
+                        "on-secondary-fixed": "#32120e",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "surface-dim": "#dcd9d9",
+                        "on-background": "#1c1b1b",
+                        "primary-fixed": "#d3e8d5",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container": "#f0eded",
+                        "on-secondary-fixed-variant": "#653c36",
+                        "surface-tint": "#506354",
+                        "secondary-container": "#ffc3bb",
+                        "on-secondary": "#ffffff",
+                        "primary": "#334537",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fcf9f8",
+                        "inverse-primary": "#b7ccb9",
+                        "secondary": "#80534c",
+                        "inverse-on-surface": "#f3f0ef",
+                        "secondary-fixed": "#ffdad5",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#f3b8b0",
+                        "on-surface-variant": "#434843",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#c0d5c2",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-tertiary-container": "#d1d0cc",
+                        "background": "#fcf9f8",
+                        "on-secondary-container": "#7b4e48",
+                        "surface-container-high": "#eae7e7",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "xxl": "80px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "unit": "4px",
+                        "container-max": "1280px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Noto Serif"],
+                        "button": ["Inter"],
+                        "h1": ["Noto Serif"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h3": ["Noto Serif"]
+                    },
+                    "fontSize": {
+                        "h2": ["36px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "button": ["14px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "h1": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "h3": ["24px", { "lineHeight": "1.4", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar (Hidden on Mobile, Visible on Desktop) -->
+<header class="hidden md:flex bg-stone-50/90 dark:bg-stone-950/90 backdrop-blur-md text-emerald-900 dark:text-emerald-100 font-serif text-sm tracking-wide docked full-width top-0 z-50 border-b border-stone-200 dark:border-stone-800 flat no shadows flex justify-between items-center w-full px-8 h-20 max-w-7xl mx-auto sticky">
+<nav class="flex gap-8">
+<a class="text-stone-500 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors py-2" href="#">Shop All</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors py-2" href="#">Occasions</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors py-2" href="#">Subscriptions</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors py-2" href="#">Atelier</a>
+</nav>
+<div class="text-2xl font-serif italic text-emerald-900 dark:text-emerald-50">BloomSupply</div>
+<div class="flex gap-6 items-center">
+<button aria-label="Search" class="hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors opacity-70 transition-opacity">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button aria-label="Shopping Bag" class="hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<!-- Active State on Account/Profile -->
+<button aria-label="Account" class="text-emerald-900 dark:text-emerald-50 border-b border-emerald-900 pb-1">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-gutter py-xl md:py-xxl flex flex-col md:flex-row gap-xl">
+<!-- Sidebar Menu (Desktop) -->
+<aside class="hidden md:block w-64 shrink-0">
+<h2 class="font-h3 text-h3 text-on-surface mb-lg">Account</h2>
+<nav class="flex flex-col gap-sm">
+<a class="py-sm px-md rounded-DEFAULT text-on-surface hover:bg-surface-variant transition-colors font-body-md text-body-md" href="#">Profile</a>
+<a class="py-sm px-md rounded-DEFAULT bg-primary-fixed text-on-primary-fixed font-body-md text-body-md font-medium" href="#">Order History</a>
+<a class="py-sm px-md rounded-DEFAULT text-on-surface hover:bg-surface-variant transition-colors font-body-md text-body-md" href="#">Addresses</a>
+<a class="py-sm px-md rounded-DEFAULT text-on-surface hover:bg-surface-variant transition-colors font-body-md text-body-md" href="#">Payment Methods</a>
+<a class="py-sm px-md rounded-DEFAULT text-on-surface hover:bg-surface-variant transition-colors font-body-md text-body-md mt-lg text-error hover:bg-error-container" href="#">Sign Out</a>
+</nav>
+</aside>
+<!-- Orders Area -->
+<div class="flex-1 w-full">
+<div class="flex justify-between items-end mb-lg">
+<h1 class="font-h2 text-h2 text-on-surface">Order History</h1>
+</div>
+<!-- Order List -->
+<div class="flex flex-col gap-lg">
+<!-- Order Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg flex flex-col shadow-[0_4px_12px_rgba(74,93,78,0.05)]">
+<!-- Header -->
+<div class="flex flex-wrap justify-between items-start border-b border-outline-variant/30 pb-md mb-md gap-md">
+<div class="flex flex-col gap-xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Order #ORD-2023-894</span>
+<span class="font-body-md text-body-md text-on-surface">October 12, 2023</span>
+</div>
+<div class="flex flex-col items-end gap-xs">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps uppercase">Delivered</span>
+<span class="font-body-lg text-body-lg text-on-surface">$145.00</span>
+</div>
+</div>
+<!-- Items -->
+<div class="flex gap-md overflow-x-auto pb-sm scrollbar-hide">
+<img alt="Item" class="w-20 h-20 object-cover rounded-lg border border-outline-variant/30 shrink-0" data-alt="close up of a delicate white peony arrangement in a clear glass vase on a dark marble counter soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI14EOWbp_B5MQScvEjOxCJFq05QeMWxa2LO49V-Qda1ybiNs4MP8Xuh0vPVGeWOFOinY-HIImrTwydHrZQSfcc8fEup4fl1rI6dTX6RRkmJNRRG6H8BQ5PUy4HoUaQWpMbdbuySmJHhUsZV2yL2m4uxG8poSGZNiBSkyDr5exkGJUzc6u9ehgV75dSrs5GQ455qCJiNGPdOs4hoIJciv1VxKNm8TLVvxSUCbX-1bfQlHyQ4pSuwWMj7415tp6ssEAx5Eg8jmzsg"/>
+<img alt="Item" class="w-20 h-20 object-cover rounded-lg border border-outline-variant/30 shrink-0" data-alt="minimalist arrangement of dried eucalyptus stems in a ceramic vase light cream background soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5scjZnq5U982wfQg8PcexwpJ2VNTGiqsJETT_VXGlEgvthxbdg_bsm1p6kK7GHqnfaOLBFJBnjQSYxITpcB7-Yk-yyuXIPMj4FrCtAGqZ6XIVY85Iz0v5GnMHStluwACRF38pR-6X-HjTfzEelcXTWVkaiNfOigbaoCawBt6o-9jEWZLrmghC-KCco5ufJIQZrJ_OMUMaukjH7GcYnElHD3IyzHMp1K397ze1U1uk8-q_xdOjdhQS_U9Qn4FCENkhN5BP7C5BPg"/>
+</div>
+<!-- Actions -->
+<div class="flex justify-end gap-md mt-md pt-md border-t border-outline-variant/30">
+<button class="bg-transparent text-on-surface border border-outline px-6 py-3 rounded-lg font-button text-button hover:bg-surface-variant transition-colors">View Details</button>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-button text-button hover:opacity-90 transition-opacity">Track Order</button>
+</div>
+</div>
+<!-- Order Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg flex flex-col shadow-[0_4px_12px_rgba(74,93,78,0.05)]">
+<div class="flex flex-wrap justify-between items-start border-b border-outline-variant/30 pb-md mb-md gap-md">
+<div class="flex flex-col gap-xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Order #ORD-2023-742</span>
+<span class="font-body-md text-body-md text-on-surface">September 05, 2023</span>
+</div>
+<div class="flex flex-col items-end gap-xs">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-variant text-on-surface-variant font-label-caps text-label-caps uppercase">Delivered</span>
+<span class="font-body-lg text-body-lg text-on-surface">$85.00</span>
+</div>
+</div>
+<div class="flex gap-md overflow-x-auto pb-sm scrollbar-hide">
+<img alt="Item" class="w-20 h-20 object-cover rounded-lg border border-outline-variant/30 shrink-0" data-alt="vibrant bouquet of orange and yellow ranunculus flowers wrapped in brown craft paper natural sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArgNwJSn8yG_GqgpglfxxSa3HO1jqYdcMGBIw-HkMo1YRNaAm1jQzlWURqTeRhwSksBaauWWN9c06PboVi0GfrqznUqelvSyblGJJ-8djCkJAYkcbVSsWbKwKkSmFNAOURdpmLyIR_Uq7PCxg-1CBwdDpliCSt_CMrsElKyEgp6Cpzvo8U_yktfoKdEOqw2z-9bbVLYR55EDXMnDjK_-argCbjidNsV6WP4sh5oNiRfmwSCHceVGVcAdtoafohN4FZaDHtM4REzw"/>
+</div>
+<div class="flex justify-end gap-md mt-md pt-md border-t border-outline-variant/30">
+<button class="bg-transparent text-on-surface border border-outline px-6 py-3 rounded-lg font-button text-button hover:bg-surface-variant transition-colors">View Details</button>
+<button class="bg-transparent text-on-surface border border-outline px-6 py-3 rounded-lg font-button text-button hover:bg-surface-variant transition-colors">Reorder</button>
+</div>
+</div>
+<!-- Order Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg flex flex-col shadow-[0_4px_12px_rgba(74,93,78,0.05)]">
+<div class="flex flex-wrap justify-between items-start border-b border-outline-variant/30 pb-md mb-md gap-md">
+<div class="flex flex-col gap-xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Order #ORD-2023-511</span>
+<span class="font-body-md text-body-md text-on-surface">August 14, 2023</span>
+</div>
+<div class="flex flex-col items-end gap-xs">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-variant text-on-surface-variant font-label-caps text-label-caps uppercase">Delivered</span>
+<span class="font-body-lg text-body-lg text-on-surface">$210.00</span>
+</div>
+</div>
+<div class="flex gap-md overflow-x-auto pb-sm scrollbar-hide">
+<img alt="Item" class="w-20 h-20 object-cover rounded-lg border border-outline-variant/30 shrink-0" data-alt="large luxury arrangement of blush roses and dark orchids in a matte black ceramic bowl moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNDwfQWsVqElUyeeTwsToFsBHvY1zvB78pb4QG2iJ3hBIg2iBKZQg2ulzRnvOXDk9VIQhClszvP4e88D8RxdQcq4Fd3YeALaXvjS_IOhSEut275m4oZEL2amii0cvox3hkupe0DV6HTbjvNn7VljJkBtPTif4PcsRj1l0UlqdNaSVkSF_KrNuKsEPwCy9lqEbpOSJSZTQd4ExxaQCCZ-4qPFYSfb5B4qo1G3sxIdxB-5sW0y57jmIKO0nLnLsLTHzF0V7P3J7bJw"/>
+<img alt="Item" class="w-20 h-20 object-cover rounded-lg border border-outline-variant/30 shrink-0" data-alt="brass watering can sitting next to a small potted fern warm indoor lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnUj6XbR27bWZ6HIuoakFX3gx-hGL-wbZ6AjCNfzYlBeB-2MKCLdgi-Ogpe-6zTOe8lOR_xGMBp2EP3yMQQSxEkKG7tOx9M-WfFAClsLdY8wBTlH0AMP9fZGhdd1xdIpnmTfXJzKEPeLfUVIkjsa1sec3qHCi0pp5x9gTuxKF9I7wnyoZVQBLOFdhiuvxJVtDbulP5lDXG6w31E9NNktX1btyaPENBqEBVODTfTlwdy9tDifdLhOnYXbZ7m7FjX1EhBHaLqaunrg"/>
+<img alt="Item" class="w-20 h-20 object-cover rounded-lg border border-outline-variant/30 shrink-0" data-alt="premium botanical shears with brass handles lying on white marble surface top down view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4HPoHwxw-wS67UfU3UpUXpUuVmTa-FVBWBWKdkEshV54zmxpW6ERJeElZOxVR1bQh_8c6okKyDztwtpZKT_BH6uVnxWAgvgE3E66BUq9uv00LuADire5ashiLlui503-7XadIzL6BzKd7U21na2_yiTGnSco5cYG812K_ip3J2j7EuwOvfZClUVj2x68iV1PfQEAl_PrPHGxxsaRkyxnnaphnNq7N3Ib7BOdQLi1ZIq4OAINl5W-t1o97ZF2EjlTOEm3tsIpncg"/>
+</div>
+<div class="flex justify-end gap-md mt-md pt-md border-t border-outline-variant/30">
+<button class="bg-transparent text-on-surface border border-outline px-6 py-3 rounded-lg font-button text-button hover:bg-surface-variant transition-colors">View Details</button>
+<button class="bg-transparent text-on-surface border border-outline px-6 py-3 rounded-lg font-button text-button hover:bg-surface-variant transition-colors">Reorder</button>
+</div>
+</div>
+</div>
+<div class="mt-xl flex justify-center">
+<button class="text-secondary font-button text-button underline hover:opacity-80 transition-opacity">Load More Orders</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe md:hidden bg-stone-50 dark:bg-stone-950 text-emerald-900 dark:text-emerald-100 font-serif text-[10px] uppercase tracking-tighter docked full-width z-50 border-t border-stone-200 dark:border-stone-800 shadow-[0_-4px_12px_rgba(74,93,78,0.05)]">
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 active:bg-stone-100 dark:active:bg-stone-900 p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 active:bg-stone-100 dark:active:bg-stone-900 p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="local_florist">local_florist</span>
+<span>Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 active:bg-stone-100 dark:active:bg-stone-900 p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="shopping_bag">shopping_bag</span>
+<span>Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-900 dark:text-emerald-50 font-bold scale-95 transition-transform p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span>Account</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="bg-stone-100 dark:bg-stone-900 text-emerald-900 dark:text-emerald-100 font-serif text-xs tracking-widest uppercase full-width border-t border-stone-200 dark:border-stone-800 flat w-full py-16 px-8 flex flex-col items-center gap-8 max-w-7xl mx-auto mt-auto pb-24 md:pb-16">
+<div class="text-xl font-serif text-emerald-900 dark:text-emerald-50">BloomSupply</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-stone-500 hover:text-emerald-700 underline transition-all" href="#">Sustainability</a>
+<a class="text-stone-500 hover:text-emerald-700 underline transition-all" href="#">Shipping &amp; Returns</a>
+<a class="text-stone-500 hover:text-emerald-700 underline transition-all" href="#">Privacy</a>
+<a class="text-stone-500 hover:text-emerald-700 underline transition-all" href="#">Contact</a>
+</div>
+<div class="text-stone-500 text-center mt-8">© 2024 BloomSupply Atelier. Curated Nature for the Modern Home.</div>
+</footer>
+</body></html>

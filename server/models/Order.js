@@ -43,7 +43,7 @@ const OrderSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['pending', 'processing', 'shipped', 'in-hub', 'delivered', 'cancelled'],
+    enum: ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled'],
     default: 'pending'
   },
   trackingHistory: [{
@@ -64,33 +64,28 @@ const OrderSchema = new mongoose.Schema({
   },
   paymentMethod: {
     type: String,
-    default: 'demo'
+    default: 'cod'
   },
-  giftWrap: {
-    type: Boolean,
-    default: false
+  deliveryCharge: {
+    type: Number,
+    default: 0
   },
   notes: String,
-  estimatedDelivery: Date,
-  vendor: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }
+  estimatedDelivery: Date
 }, {
   timestamps: true
 });
 
-// Auto-generate order number before saving
 OrderSchema.pre('save', async function(next) {
   if (!this.orderNumber) {
     const count = await mongoose.model('Order').countDocuments();
-    this.orderNumber = `ORD-${String(9000 + count + 1).padStart(4, '0')}`;
+    this.orderNumber = `BLM-${String(10000 + count + 1)}`;
   }
   next();
 });
 
 OrderSchema.index({ customer: 1, createdAt: -1 });
-OrderSchema.index({ vendor: 1 });
 OrderSchema.index({ status: 1 });
+
 
 module.exports = mongoose.model('Order', OrderSchema);

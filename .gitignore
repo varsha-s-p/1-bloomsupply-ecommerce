@@ -1,6 +1,10 @@
 node_modules/
-.env
+client/node_modules/
+server/node_modules/
+client/dist/
 dist/
-build/
+server/.env
+.env
+mingit.zip
+mingit/
 .DS_Store
-server/data/

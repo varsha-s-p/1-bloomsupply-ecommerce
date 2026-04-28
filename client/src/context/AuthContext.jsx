@@ -10,7 +10,11 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const savedUser = localStorage.getItem('bloom_user');
     if (savedUser) {
-      setUser(JSON.parse(savedUser));
+      try {
+        setUser(JSON.parse(savedUser));
+      } catch (e) {
+        localStorage.removeItem('bloom_user');
+      }
     }
     setLoading(false);
   }, []);
@@ -19,6 +23,9 @@ export const AuthProvider = ({ children }) => {
     const { data } = await api.loginUser({ email, password });
     setUser(data);
     localStorage.setItem('bloom_user', JSON.stringify(data));
+    if (data.role === 'admin' && data.refreshToken) {
+      localStorage.setItem('bloom_admin', JSON.stringify(data));
+    }
     return data;
   };
 
@@ -32,6 +39,8 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem('bloom_user');
+    localStorage.removeItem('bloom_admin');
+    localStorage.removeItem('bloom_guest_cart');
   };
 
   const updateUser = (userData) => {
@@ -39,8 +48,11 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('bloom_user', JSON.stringify(userData));
   };
 
+  const isAuthenticated = !!user;
+  const isAdmin = user?.role === 'admin';
+
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, updateUser, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, updateUser, loading, isAuthenticated, isAdmin }}>
       {children}
     </AuthContext.Provider>
   );

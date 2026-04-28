@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shop All - BloomSupply Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Noto+Serif:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error": "#ba1a1a",
+                        "surface": "#fcf9f8",
+                        "tertiary": "#41423f",
+                        "tertiary-fixed": "#e4e2de",
+                        "outline": "#737872",
+                        "on-primary-fixed": "#0e1f13",
+                        "on-tertiary-fixed": "#1b1c1a",
+                        "outline-variant": "#c3c8c1",
+                        "tertiary-container": "#595956",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1c1b1b",
+                        "tertiary-fixed-dim": "#c8c6c3",
+                        "inverse-surface": "#313030",
+                        "primary-container": "#4a5d4e",
+                        "on-secondary-fixed": "#32120e",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "surface-dim": "#dcd9d9",
+                        "on-background": "#1c1b1b",
+                        "primary-fixed": "#d3e8d5",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container": "#f0eded",
+                        "on-secondary-fixed-variant": "#653c36",
+                        "surface-tint": "#506354",
+                        "secondary-container": "#ffc3bb",
+                        "on-secondary": "#ffffff",
+                        "primary": "#334537",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fcf9f8",
+                        "inverse-primary": "#b7ccb9",
+                        "secondary": "#80534c",
+                        "inverse-on-surface": "#f3f0ef",
+                        "secondary-fixed": "#ffdad5",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#f3b8b0",
+                        "on-surface-variant": "#434843",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#c0d5c2",
+                        "surface-container-low": "#f6f3f2",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-tertiary-container": "#d1d0cc",
+                        "background": "#fcf9f8",
+                        "on-secondary-container": "#7b4e48",
+                        "surface-container-high": "#eae7e7",
+                        "error-container": "#ffdad6"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "gutter": "24px",
+                        "xxl": "80px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "unit": "4px",
+                        "container-max": "1280px",
+                        "xs": "4px"
+                    },
+                    fontFamily: {
+                        "h2": ["Noto Serif"],
+                        "button": ["Inter"],
+                        "h1": ["Noto Serif"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h3": ["Noto Serif"]
+                    },
+                    fontSize: {
+                        "h2": ["36px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "button": ["14px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "h1": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "h3": ["24px", { "lineHeight": "1.4", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-stone-50/90 dark:bg-stone-950/90 backdrop-blur-md text-emerald-900 dark:text-emerald-100 font-serif text-sm tracking-wide sticky top-0 z-50 border-b border-stone-200 dark:border-stone-800">
+<div class="flex justify-between items-center w-full px-8 h-20 max-w-7xl mx-auto">
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-emerald-900 dark:text-emerald-50 border-b border-emerald-900 pb-1 opacity-70 transition-opacity" href="#">Shop All</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors" href="#">Occasions</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors" href="#">Subscriptions</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors" href="#">Atelier</a>
+</nav>
+<div class="text-2xl font-serif italic text-emerald-900 dark:text-emerald-50 absolute left-1/2 transform -translate-x-1/2">
+                BloomSupply
+            </div>
+<div class="flex gap-4 items-center ml-auto">
+<button class="hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-gutter py-xl">
+<!-- Page Header -->
+<div class="mb-lg">
+<h1 class="font-h1 text-h1 text-on-surface mb-sm">Shop All</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">24 arrangements curated for the season.</p>
+</div>
+<!-- Toolbar -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center py-md border-t border-b border-outline-variant/30 mb-xl gap-4">
+<button class="flex items-center gap-2 font-button text-button text-on-surface border border-outline/30 px-lg py-sm rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+                Filters
+            </button>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="font-body-md text-body-md">Sort by:</span>
+<select class="bg-transparent border-none font-button text-button text-on-surface focus:ring-0 cursor-pointer pr-8">
+<option>Featured</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Newest Arrivals</option>
+</select>
+</div>
+</div>
+<!-- Filter Tags (Collapsible Panel Simulation) -->
+<div class="flex flex-wrap gap-sm mb-xl">
+<span class="bg-secondary-container text-on-secondary-container font-label-caps text-label-caps px-md py-sm rounded-full cursor-pointer hover:bg-secondary-fixed transition-colors">Romantic</span>
+<span class="bg-surface-container-high text-on-surface font-label-caps text-label-caps px-md py-sm rounded-full cursor-pointer hover:bg-surface-variant transition-colors">Sympathy</span>
+<span class="bg-surface-container-high text-on-surface font-label-caps text-label-caps px-md py-sm rounded-full cursor-pointer hover:bg-surface-variant transition-colors">Celebration</span>
+<span class="bg-surface-container-high text-on-surface font-label-caps text-label-caps px-md py-sm rounded-full cursor-pointer hover:bg-surface-variant transition-colors">Dried</span>
+<span class="bg-surface-container-high text-on-surface font-label-caps text-label-caps px-md py-sm rounded-full cursor-pointer hover:bg-surface-variant transition-colors">Vase Included</span>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative w-full aspect-[4/5] bg-surface-container mb-md rounded-lg overflow-hidden border border-outline-variant/20 shadow-[0_4px_24px_rgba(74,93,78,0.05)]">
+<img alt="Card Image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="close up of a delicate, romantic floral arrangement with soft pink and cream peonies in a minimalist ceramic vase, golden hour lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQo_PC_-fsaEXszarTtQMarbOuc5UKG0Ec3IMpRWGiMcOkQEg199kQiGRdzFSMoUa8RupNa8J56oSabt5qBMWJic0J8zAxOy8pCBWPx3qV_AUjki8B-7mIKQUMmAnaGANRJP2Gonk2GP3FQcWjSuOZxOCV7pkiaabUlJrXmy4G_peiG9e_VlqVZUAC_obNDyv5JaYnMjbI5L-hhzy2Dh700Y-MPZtYo0grOljjzKtAMBApeVllFSrh7AQ5qC_n2GasrEybuaWPYg"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">The Provence</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Peonies &amp; Wild Grasses</p>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface">$120</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative w-full aspect-[4/5] bg-surface-container mb-md rounded-lg overflow-hidden border border-outline-variant/20 shadow-[0_4px_24px_rgba(74,93,78,0.05)]">
+<img alt="Card Image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="modern, architectural arrangement of white calla lilies and dark green tropical leaves on a light grey stone surface, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRijQn3r8PRRcq95oGWJh2TCz-YjUErnSrUbhbbmOsnGNX-76syEJLVnaPnLYLXXp4orO8_TvzgyLFyoAhdctxlzyLH70rGXIsXFvxZAmuMcfqwSAjs2JHfcrEA5C8zfWzeeXLZvVVCxBZNEcy5V6jNmnrIychOkWUyAK2EmZIJOtmVCfHxCswJtAbaDXWgOO_HmPpTGC2bASa19HouVTNYfuPqqCAqGd3-Om4lTuB-NaGb8bVhGo-Cea2ootih-JZa7ONVc5uzQ"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">Modernist</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Calla Lilies &amp; Monstera</p>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface">$95</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative w-full aspect-[4/5] bg-surface-container mb-md rounded-lg overflow-hidden border border-outline-variant/20 shadow-[0_4px_24px_rgba(74,93,78,0.05)]">
+<img alt="Card Image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="moody, dramatic floral bouquet with dark burgundy dahlias and dried thistles in a dark setting, dramatic side lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfATndstGJRW9qd31lCf83TZRusZdGHxlFSikDFROXBgtnbXsmXSpQenpw5Yldm_clEEsAdnoX9aOjFc64NNdvdfgkivl5h_xjWbY6lMO2k4Zg_sROTYqZzXhtLe7uene1niGkFGiyAGQQrEZsgfAYWc-U1CZdXYCDXSztnwKiFBiaLaMYVWipUuN6BPtVRpTCCqaedZI13zBDstnhCE9pzrhBwWHlrFJatSEZkyk1waZ-ydG1GKlgSrYA0XS9qLpV8FH0x_3PiQ"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">Midnight Bloom</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Dahlias &amp; Thistle</p>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface">$145</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group cursor-pointer">
+<div class="relative w-full aspect-[4/5] bg-surface-container mb-md rounded-lg overflow-hidden border border-outline-variant/20 shadow-[0_4px_24px_rgba(74,93,78,0.05)]">
+<img alt="Card Image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="bright, cheerful arrangement of sunflowers and blue hydrangeas on a white wooden table, natural morning daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOVw5kNKFoJ6Q82GrO9UmmCBzz3Ig9ySLL4cSmxfL3b_L4Lkr9UHsuTKmFqyXjlDv6foIkrF_sZW3T0gNZ9CNfcWQVCB5lIQZzCxB7AnAA5MbJv0PlsTGbFAMyDnPcslxmPHUkkPzTuZ0cvyFNACOOjF0CVQCEwFNXfY7l_XeYkwvCpvlVmV8S09WmV4kIXPi81bUJUQ3lGyvAJDwRQBpHfxUth0uS1oo_LNPj6gGflKQ9OSqpHDP6LdvkC4OYxVB3rw8bmH8cnA"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">Summer Solstice</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Sunflowers &amp; Hydrangea</p>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface">$110</span>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group cursor-pointer">
+<div class="relative w-full aspect-[4/5] bg-surface-container mb-md rounded-lg overflow-hidden border border-outline-variant/20 shadow-[0_4px_24px_rgba(74,93,78,0.05)]">
+<img alt="Card Image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="minimalist dried flower arrangement with pampas grass and bleached ferns in an earthy terracotta pot, soft neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_WUdqpFqqa3JkFjyWYQTBxcBfXY7TmneCIwdRGKXnsPdU57wEafQZIWng9x2uIRPUwhtJsy7O4fwxdol2_dxAECZOqllkSWPpAq73j1zYkVdltYvXoktOrI7FblmhS3QBGRhqbpBl66_g2uU95I3VTIAjjED4FHzYLrshoYR45Kg6PZfd3COkeQlHE1udYRmo6I0zaw33VU-bWU0ZwM8kiH_qil5zMPyWFudgwKkPtsAVBDGI8a5JTS543pbSEkGELCzwFg7AuA"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">Dune</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Dried Pampas &amp; Fern</p>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface">$85</span>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group cursor-pointer">
+<div class="relative w-full aspect-[4/5] bg-surface-container mb-md rounded-lg overflow-hidden border border-outline-variant/20 shadow-[0_4px_24px_rgba(74,93,78,0.05)]">
+<img alt="Card Image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="classic elegant bouquet of pale pink and white roses wrapped in natural brown paper, soft romantic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwf6EukwwAIYiqhOTEd9Zl-YNM8WrSqueVvhLoVvVXjzUVw02hvFBVekDv3qQLQE3Wy8QxGKHUpZ97kPGrnnp_cMuffsIuXJlHV7Ps9jC9jJdcAj5TIBTO6LPXVtZHQlUa_3jfekHgOutjOqoDTaU2Pgg4xBb1LELnyr73C-KufxobG9ieVqahkD6f3sS1ASpJ6sQ_1Vj2MqZz8pEXMk7fcVHzOXiyQOEi-gPCWIZM6hLS1EnQnpQ0YUjc0KrOoJP9tzLTr9zNlg"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">The Classic</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Heritage Roses</p>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface">$130</span>
+</div>
+</div>
+</div>
+<!-- Infinite Scroll Loading State -->
+<div class="w-full flex justify-center items-center py-xxl mt-xl">
+<div class="flex gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-container animate-bounce" style="animation-delay: 0s;"></div>
+<div class="w-2 h-2 rounded-full bg-primary-container animate-bounce" style="animation-delay: 0.2s;"></div>
+<div class="w-2 h-2 rounded-full bg-primary-container animate-bounce" style="animation-delay: 0.4s;"></div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="bg-stone-50 dark:bg-stone-950 text-emerald-900 dark:text-emerald-100 font-serif text-[10px] uppercase tracking-tighter border-t border-stone-200 dark:border-stone-800 shadow-[0_-4px_12px_rgba(74,93,78,0.05)] fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe md:hidden z-50">
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 active:bg-stone-100 dark:active:bg-stone-900" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+            Home
+        </a>
+<a class="flex flex-col items-center justify-center text-emerald-900 dark:text-emerald-50 font-bold active:bg-stone-100 dark:active:bg-stone-900 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1">local_florist</span>
+            Shop
+        </a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 active:bg-stone-100 dark:active:bg-stone-900" href="#">
+<span class="material-symbols-outlined mb-1">shopping_bag</span>
+            Cart
+        </a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 active:bg-stone-100 dark:active:bg-stone-900" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+            Account
+        </a>
+</nav>
+<!-- Footer -->
+<footer class="bg-stone-100 dark:bg-stone-900 text-emerald-900 dark:text-emerald-100 font-serif text-xs tracking-widest uppercase border-t border-stone-200 dark:border-stone-800 w-full py-16 px-8 flex flex-col items-center gap-8 max-w-7xl mx-auto md:mb-0 mb-20">
+<div class="text-xl font-serif text-emerald-900 dark:text-emerald-50">
+            BloomSupply
+        </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-stone-500 hover:text-emerald-700 underline transition-all" href="#">Sustainability</a>
+<a class="text-stone-500 hover:text-emerald-700 underline transition-all" href="#">Shipping &amp; Returns</a>
+<a class="text-stone-500 hover:text-emerald-700 underline transition-all" href="#">Privacy</a>
+<a class="text-stone-500 hover:text-emerald-700 underline transition-all" href="#">Contact</a>
+</div>
+<div class="text-stone-500 text-center mt-4">
+            © 2024 BloomSupply Atelier. Curated Nature for the Modern Home.
+        </div>
+</footer>
+</body></html>

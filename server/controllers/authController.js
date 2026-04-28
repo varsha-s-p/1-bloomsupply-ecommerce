@@ -1,69 +1,26 @@
 const User = require('../models/User');
-const VendorProfile = require('../models/VendorProfile');
-const GrowerProfile = require('../models/GrowerProfile');
-const jwt = require('jsonwebtoken');
+const { generateAccessToken, generateRefreshToken, verifyRefreshToken } = require('../middleware/auth');
 
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '30d'
-  });
-};
-
-// @desc    Register new user
-// @route   POST /api/auth/register
 exports.registerUser = async (req, res) => {
-  const { name, email, password, role, phone, address, city, state, pincode,
-          shopName, shopDescription, shopAddress, shopCity, shopPhone, deliveryAvailable, deliveryRadius,
-          farmName, farmDescription, farmAddress, farmCity, farmPhone, specialties, certifications, farmSize
-  } = req.body;
+  const { name, email, password, phone, address, city, state, pincode } = req.body;
 
   try {
     const userExists = await User.findOne({ email });
     if (userExists) {
-      return res.status(400).json({ message: 'User already exists with this email' });
+      return res.status(400).json({ message: 'An account with this email already exists' });
     }
 
     const user = await User.create({
-      name, email, password, role,
+      name,
+      email,
+      password,
+      role: 'customer',
       phone: phone || '',
       address: address || '',
       city: city || '',
       state: state || '',
       pincode: pincode || ''
     });
-
-    // Create vendor profile if vendor
-    if (role === 'vendor' && shopName) {
-      const vendorProfile = await VendorProfile.create({
-        user: user._id,
-        shopName,
-        shopDescription: shopDescription || '',
-        shopAddress: shopAddress || address || '',
-        city: shopCity || city || '',
-        phone: shopPhone || phone || '',
-        deliveryAvailable: deliveryAvailable || false,
-        deliveryRadius: deliveryRadius || 0
-      });
-      user.vendorProfile = vendorProfile._id;
-      await user.save();
-    }
-
-    // Create grower profile if grower
-    if (role === 'grower' && farmName) {
-      const growerProfile = await GrowerProfile.create({
-        user: user._id,
-        farmName,
-        farmDescription: farmDescription || '',
-        farmAddress: farmAddress || address || '',
-        city: farmCity || city || '',
-        phone: farmPhone || phone || '',
-        specialties: specialties || [],
-        certifications: certifications || [],
-        farmSize: farmSize || ''
-      });
-      user.growerProfile = growerProfile._id;
-      await user.save();
-    }
 
     res.status(201).json({
       _id: user._id,
@@ -72,69 +29,90 @@ exports.registerUser = async (req, res) => {
       role: user.role,
       phone: user.phone,
       city: user.city,
-      token: generateToken(user._id)
+      token: generateAccessToken(user._id)
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// @desc    Auth user & get token
-// @route   POST /api/auth/login
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email })
-      .populate('vendorProfile')
-      .populate('growerProfile');
+    const user = await User.findOne({ email });
 
-    if (user && (await user.comparePassword(password))) {
-      res.json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        phone: user.phone,
-        city: user.city,
-        avatar: user.avatar,
-        vendorProfile: user.vendorProfile || null,
-        growerProfile: user.growerProfile || null,
-        token: generateToken(user._id)
-      });
-    } else {
-      res.status(401).json({ message: 'Invalid email or password' });
+    if (!user || !(await user.comparePassword(password))) {
+      return res.status(401).json({ message: 'Invalid email or password' });
     }
+
+    if (!user.isActive) {
+      return res.status(403).json({ message: 'Account has been deactivated' });
+    }
+
+    const responseData = {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      phone: user.phone,
+      city: user.city,
+      avatar: user.avatar,
+      token: generateAccessToken(user._id)
+    };
+
+    if (user.role === 'admin') {
+      responseData.refreshToken = generateRefreshToken(user._id);
+    }
+
+    res.json(responseData);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// @desc    Get current user profile
-// @route   GET /api/auth/profile
+exports.refreshToken = async (req, res) => {
+  const { refreshToken } = req.body;
+
+  if (!refreshToken) {
+    return res.status(400).json({ message: 'Refresh token required' });
+  }
+
+  const decoded = verifyRefreshToken(refreshToken);
+  if (!decoded) {
+    return res.status(401).json({ message: 'Invalid or expired refresh token' });
+  }
+
+  try {
+    const user = await User.findById(decoded.id);
+    if (!user || user.role !== 'admin') {
+      return res.status(403).json({ message: 'Invalid refresh token' });
+    }
+
+    res.json({
+      token: generateAccessToken(user._id),
+      refreshToken: generateRefreshToken(user._id)
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.getProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id)
-      .select('-password')
-      .populate('vendorProfile')
-      .populate('growerProfile');
-
+    const user = await User.findById(req.user._id).select('-password');
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// @desc    Update user profile
-// @route   PUT /api/auth/profile
 exports.updateProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
-
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -159,7 +137,7 @@ exports.updateProfile = async (req, res) => {
       role: updatedUser.role,
       phone: updatedUser.phone,
       city: updatedUser.city,
-      token: generateToken(updatedUser._id)
+      token: generateAccessToken(updatedUser._id)
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

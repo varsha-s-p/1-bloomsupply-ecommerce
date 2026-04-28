@@ -1,13 +1,11 @@
 const Cart = require('../models/Cart');
 
-// @desc    Get user's cart
-// @route   GET /api/cart
 exports.getCart = async (req, res) => {
   try {
     let cart = await Cart.findOne({ user: req.user._id })
       .populate({
         path: 'items.product',
-        select: 'name price bulkPrice unit images stock badge source'
+        select: 'name price mrp unit images stock badge isAvailable'
       });
 
     if (!cart) {
@@ -20,8 +18,6 @@ exports.getCart = async (req, res) => {
   }
 };
 
-// @desc    Add item to cart
-// @route   POST /api/cart
 exports.addToCart = async (req, res) => {
   const { productId, quantity = 1 } = req.body;
 
@@ -34,7 +30,6 @@ exports.addToCart = async (req, res) => {
         items: [{ product: productId, quantity }]
       });
     } else {
-      // Check if product already in cart
       const existingItem = cart.items.find(
         item => item.product.toString() === productId
       );
@@ -48,11 +43,10 @@ exports.addToCart = async (req, res) => {
       await cart.save();
     }
 
-    // Populate and return
     cart = await Cart.findOne({ user: req.user._id })
       .populate({
         path: 'items.product',
-        select: 'name price bulkPrice unit images stock badge source'
+        select: 'name price mrp unit images stock badge isAvailable'
       });
 
     res.json(cart);
@@ -61,8 +55,6 @@ exports.addToCart = async (req, res) => {
   }
 };
 
-// @desc    Update cart item quantity
-// @route   PUT /api/cart/:productId
 exports.updateCartItem = async (req, res) => {
   const { quantity } = req.body;
 
@@ -94,7 +86,7 @@ exports.updateCartItem = async (req, res) => {
     const updatedCart = await Cart.findOne({ user: req.user._id })
       .populate({
         path: 'items.product',
-        select: 'name price bulkPrice unit images stock badge source'
+        select: 'name price mrp unit images stock badge isAvailable'
       });
 
     res.json(updatedCart);
@@ -103,8 +95,6 @@ exports.updateCartItem = async (req, res) => {
   }
 };
 
-// @desc    Remove item from cart
-// @route   DELETE /api/cart/:productId
 exports.removeFromCart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user._id });
@@ -122,7 +112,7 @@ exports.removeFromCart = async (req, res) => {
     const updatedCart = await Cart.findOne({ user: req.user._id })
       .populate({
         path: 'items.product',
-        select: 'name price bulkPrice unit images stock badge source'
+        select: 'name price mrp unit images stock badge isAvailable'
       });
 
     res.json(updatedCart);
@@ -131,8 +121,6 @@ exports.removeFromCart = async (req, res) => {
   }
 };
 
-// @desc    Clear entire cart
-// @route   DELETE /api/cart
 exports.clearCart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user._id });
